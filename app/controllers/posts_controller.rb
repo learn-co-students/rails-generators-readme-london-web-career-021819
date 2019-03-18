@@ -18,8 +18,11 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find(params[:id])
-    @post.update(params.require(:post))
+    @post = Post.new
+    @post.title = params[:post][:title]
+    @post.description = params[:post][:description]
+    @post.post_status = params[:post][:post_status]
+    @post.save
     redirect_to post_path(@post)
   end
 
